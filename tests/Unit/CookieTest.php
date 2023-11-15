@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zaphyr\CookieTests;
+namespace Zaphyr\CookieTests\Unit;
 
 use DateTime;
 use PHPUnit\Framework\TestCase;

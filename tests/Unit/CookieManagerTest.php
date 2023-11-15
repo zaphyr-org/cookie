@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zaphyr\SessionTests;
+namespace Zaphyr\CookieTests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Zaphyr\Cookie\Contracts\CookieInterface;
@@ -17,12 +17,12 @@ class CookieManagerTest extends TestCase
      */
     protected CookieManager $cookieManager;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->cookieManager = new CookieManager();
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->cookieManager);
     }
@@ -58,7 +58,7 @@ class CookieManagerTest extends TestCase
 
         $forever = $factory->forever('foo', 'bar');
 
-        self::assertEquals(2147483647, $forever->getExpire());
+        self::assertEquals(strtotime('+1 year'), $forever->getExpire());
         self::assertEquals($forever->getExpire() - time(), $forever->getMaxAge());
         self::assertFalse($forever->isCleared());
         self::assertEquals($path, $forever->getPath());
@@ -130,7 +130,7 @@ class CookieManagerTest extends TestCase
     public function testForever(): void
     {
         $cookie = (new CookieManager())->forever('foo', 'bar');
-        $expire = gmdate('D, d-M-Y H:i:s T', $timestamp = 2147483647);
+        $expire = gmdate('D, d-M-Y H:i:s T', $timestamp = strtotime('+1 year'));
 
         self::assertEquals(
             'foo=bar; expires=' . $expire . '; Max-Age=' . ($timestamp - time()) . '; path=/; httponly; samesite=lax',
