@@ -5,13 +5,3 @@ parameters:
         - src
     parallel:
         maximumNumberOfProcesses: 1
-    ignoreErrors:
-         -
-             message: '%Method Zaphyr\\Cookie\\Cookie::getExpire\(\) should return int but returns DateTimeInterface\|int\|string.%'
-             path: src/Cookie.php
-         -
-             message: '%Binary operation "-" between DateTimeInterface\|int\|string and int<1, max> results in an error.%'
-             path: src/Cookie.php
-         -
-             message: '%Parameter #2 \$timestamp of function gmdate expects int\|null, DateTimeInterface\|int\|string given.%'
-             path: src/Cookie.php

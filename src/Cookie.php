@@ -29,6 +29,11 @@ class Cookie implements CookieInterface
     public const RESTRICTION_NONE = 'none';
 
     /**
+     * @var int
+     */
+    protected int $expire;
+
+    /**
      * @param string                       $name
      * @param string                       $value
      * @param DateTimeInterface|int|string $expire
@@ -45,6 +50,7 @@ class Cookie implements CookieInterface
         protected string $name,
         protected string $value,
         protected DateTimeInterface|int|string $expire = 0,
+        DateTimeInterface|int|string $expire = 0,
         protected string $path = '/',
         protected string|null $domain = null,
         protected bool $secure = false,
@@ -60,7 +66,7 @@ class Cookie implements CookieInterface
             throw new CookieException('Cookie name cannot be empty.');
         }
 
-        $this->expire = Utils::prepareExpire($this->expire);
+        $this->expire = Utils::prepareExpire($expire);
         $this->path = empty($this->path) ? '/' : $this->path;
 
         if ($this->sameSite !== null) {
