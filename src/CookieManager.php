@@ -33,7 +33,7 @@ class CookieManager implements CookieManagerInterface
     public function __construct(
         protected DateTimeInterface|int|string $expire = 0,
         protected string $path = '/',
-        protected string|null $domain = null,
+        protected ?string $domain = null,
         protected bool $secure = false,
         protected bool $httpOnly = true,
         protected bool $raw = false,
@@ -51,12 +51,12 @@ class CookieManager implements CookieManagerInterface
         string $name,
         string $value,
         DateTimeInterface|int|string|null $expire = null,
-        string $path = null,
-        string $domain = null,
-        bool $secure = null,
-        bool $httpOnly = null,
-        bool $raw = null,
-        string $sameSite = null
+        ?string $path = null,
+        ?string $domain = null,
+        ?bool $secure = null,
+        ?bool $httpOnly = null,
+        ?bool $raw = null,
+        ?string $sameSite = null
     ): CookieInterface {
         $expire = $expire ?? $this->expire;
         $path = $path ?? $this->path;
@@ -75,12 +75,12 @@ class CookieManager implements CookieManagerInterface
     public function forever(
         string $name,
         string $value,
-        string $path = null,
-        string $domain = null,
-        bool $secure = null,
-        bool $httpOnly = null,
-        bool $raw = null,
-        string $sameSite = null
+        ?string $path = null,
+        ?string $domain = null,
+        ?bool $secure = null,
+        ?bool $httpOnly = null,
+        ?bool $raw = null,
+        ?string $sameSite = null
     ): CookieInterface {
         return $this->create($name, $value, strtotime('+1 year'), $path, $domain, $secure, $httpOnly, $raw, $sameSite);
     }
@@ -88,7 +88,7 @@ class CookieManager implements CookieManagerInterface
     /**
      *{@inheritdoc}
      */
-    public function forget(string $name, string $path = null, string $domain = null): CookieInterface
+    public function forget(string $name, ?string $path = null, ?string $domain = null): CookieInterface
     {
         return $this->create($name, '', strtotime('-1 hour'), $path, $domain);
     }

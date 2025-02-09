@@ -42,7 +42,7 @@ interface CookieInterface
     /**
      * @return string|null
      */
-    public function getDomain(): string|null;
+    public function getDomain(): ?string;
 
     /**
      * @return bool
@@ -62,7 +62,7 @@ interface CookieInterface
     /**
      * @return string|null
      */
-    public function getSameSite(): string|null;
+    public function getSameSite(): ?string;
 
     /**
      * @return string

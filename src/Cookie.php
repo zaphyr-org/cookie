@@ -49,14 +49,13 @@ class Cookie implements CookieInterface
     public function __construct(
         protected string $name,
         protected string $value,
-        protected DateTimeInterface|int|string $expire = 0,
         DateTimeInterface|int|string $expire = 0,
         protected string $path = '/',
-        protected string|null $domain = null,
+        protected ?string $domain = null,
         protected bool $secure = false,
         protected bool $httpOnly = true,
         protected bool $raw = false,
-        protected string|null $sameSite = null
+        protected ?string $sameSite = null
     ) {
         if ($this->isRaw() && strpbrk($this->name, "/[=,; \t\r\n\v\f]/") !== false) {
             throw new CookieException('Cookie name "' . $this->name . '" contains invalid characters.');
@@ -127,7 +126,7 @@ class Cookie implements CookieInterface
     /**
      * {@inheritdoc}
      */
-    public function getDomain(): string|null
+    public function getDomain(): ?string
     {
         return $this->domain;
     }
@@ -159,7 +158,7 @@ class Cookie implements CookieInterface
     /**
      * {@inheritdoc}
      */
-    public function getSameSite(): string|null
+    public function getSameSite(): ?string
     {
         return $this->sameSite;
     }

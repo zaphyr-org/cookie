@@ -28,12 +28,12 @@ interface CookieManagerInterface
         string $name,
         string $value,
         DateTimeInterface|int|string|null $expire = null,
-        string|null $path = null,
-        string|null $domain = null,
-        bool|null $secure = null,
-        bool|null $httpOnly = null,
-        bool|null $raw = null,
-        string|null $sameSite = null
+        ?string $path = null,
+        ?string $domain = null,
+        ?bool $secure = null,
+        ?bool $httpOnly = null,
+        ?bool $raw = null,
+        ?string $sameSite = null
     ): CookieInterface;
 
     /**
@@ -51,12 +51,12 @@ interface CookieManagerInterface
     public function forever(
         string $name,
         string $value,
-        string|null $path = null,
-        string|null $domain = null,
-        bool|null $secure = null,
-        bool|null $httpOnly = null,
-        bool|null $raw = null,
-        string|null $sameSite = null
+        ?string $path = null,
+        ?string $domain = null,
+        ?bool $secure = null,
+        ?bool $httpOnly = null,
+        ?bool $raw = null,
+        ?string $sameSite = null
     ): CookieInterface;
 
     /**
@@ -66,7 +66,7 @@ interface CookieManagerInterface
      *
      * @return CookieInterface
      */
-    public function forget(string $name, string|null $path = null, string $domain = null): CookieInterface;
+    public function forget(string $name, ?string $path = null, ?string $domain = null): CookieInterface;
 
     /**
      * @param string $name
